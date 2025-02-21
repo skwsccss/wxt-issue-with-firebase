@@ -1,0 +1,6 @@
+{
+  "watch": ["./"],
+  "ext": "js,json,ts,tsx,html,css",
+  "ignore": ["node_modules/*", "dist/*", "build/*", ".output/*"],
+  "exec": "npm run build"
+}
