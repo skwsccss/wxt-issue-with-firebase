@@ -14,6 +14,11 @@ function App() {
         setLastCommand(message.payload.command);
       }
     });
+    browser.runtime.onMessage.addListener((message) => {
+      if (message.type === "COMMAND_RECEIVED") {
+        setLastCommand(message.payload.command);
+      }
+    });
   }, []);
 
   return (

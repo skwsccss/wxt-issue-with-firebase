@@ -46,15 +46,10 @@ onSnapshot(commandsQuery, (snapshot) => {
 
 async function processCommand(command: any) {
   // Implement your command processing logic here
-  window.postMessage({ type: 'SEND_COMMAND_RECEIVED', payload: command })
+  chrome.runtime.sendMessage({ type: 'COMMAND_RECEIVED', payload: command })
   return `Processed command: ${command.command}`
+
 }
 export default defineBackground(() => {
   console.log('Hello background!', { id: browser.runtime.id });
-  window.addEventListener("message", async function (event) {
-    if (event.source === window && event.data.type === "SEND_COMMAND_RECEIVED") {
-      chrome.runtime.sendMessage({ type: 'COMMAND_RECEIVED', payload: event.data.data })
-    }
-  });
-
 });
